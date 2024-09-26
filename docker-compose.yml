@@ -16,8 +16,8 @@ services:
       
   app:
     env_file: .env
-    image: recette-api
-    container_name: recette-api
+    image: api-recette
+    container_name: recette-back-end
     build: .
     volumes:
       - .:/usr/src/app
