@@ -345,4 +345,30 @@ describe('Recipe tests', () => {
       connection.release();
     }
   });
+
+  it('can get category by name', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const name = 'Dessert';
+      const result = await Category.checkCategory(name);
+      expect(result).not.toBe(0);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it("can't get category by name", async () => {
+    const connection = await pool.getConnection();
+    try {
+      const name = 'Soupe';
+      const result = await Category.checkCategory(name);
+      expect(result).toBe(0);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
 });
