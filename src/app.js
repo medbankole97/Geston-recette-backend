@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 const corsOptions = {
   origin: 'http://localhost:5173',
 };
-app.use(cors(corsOptions()));
+app.use(cors(corsOptions));
 app.use(router);
 
 const PORT = process.env.NODE_DOCKER_PORT || 3021;
