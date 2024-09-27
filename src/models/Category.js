@@ -10,6 +10,15 @@ class Category {
     return result.length;
   }
 
+  static async checkCategory(nom) {
+    const connection = await pool.getConnection();
+    const [result] = await connection.execute(
+      'select * from categories where nom = ?',
+      [nom]
+    );
+    return result.length;
+  }
+
   static async getCategoryById(id) {
     const connection = await pool.getConnection();
     const [result] = await connection.execute(
@@ -21,7 +30,7 @@ class Category {
 
   static async categories() {
     const connection = await pool.getConnection();
-    const [result] = await connection.execute('select * from categories');
+    const result = await connection.execute('select * from categories');
     return result;
   }
 

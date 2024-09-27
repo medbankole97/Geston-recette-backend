@@ -39,7 +39,7 @@ class Recipe {
 
   static async recipes() {
     const connection = await pool.getConnection();
-    const [result] = await connection.execute('select * from recettes');
+    const result = await connection.execute('select * from recettes');
     return result;
   }
 
