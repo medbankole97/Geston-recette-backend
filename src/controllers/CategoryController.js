@@ -1,10 +1,10 @@
-import Recipe from '../models/Recipe.js';
+import Category from '../models/Category.js';
 import { StatusCodes } from 'http-status-codes';
 
-class RecipeController {
-  static async recipes(_req, res, next) {
+class CategoryController {
+  static async categories(_req, res, next) {
     try {
-      const [result] = await Recipe.recipes();
+      const [result] = await Category.categories();
       res.status(StatusCodes.UNPROCESSABLE_ENTITY).json(result);
     } catch (error) {
       console.log(error.message);
@@ -14,8 +14,8 @@ class RecipeController {
 
   static async store(req, res, next) {
     try {
-      const { titre, ingredients, type, categorie_id } = req.body;
-      await Recipe.store(titre, ingredients, type, categorie_id);
+      const { nom } = req.body;
+      await Category.store(nom);
       res.status(StatusCodes.UNPROCESSABLE_ENTITY).json('Added successfully');
     } catch (error) {
       console.log(error.message);
@@ -26,8 +26,8 @@ class RecipeController {
   static async update(req, res, next) {
     try {
       const id = req.params.id;
-      const { titre, ingredients, type, categorie_id } = req.body;
-      await Recipe.update(id, titre, ingredients, type, categorie_id);
+      const { nom } = req.body;
+      await Category.update(id, nom);
       res.status(StatusCodes.UNPROCESSABLE_ENTITY).json('Updated successfully');
     } catch (error) {
       console.log(error.message);
@@ -38,7 +38,7 @@ class RecipeController {
   static async destroy(req, res, next) {
     try {
       const id = req.params.id;
-      await Recipe.destroy(id);
+      await Category.destroy(id);
       res.status(StatusCodes.UNPROCESSABLE_ENTITY).json('Deleted successfully');
     } catch (error) {
       console.log(error.message);
@@ -49,18 +49,7 @@ class RecipeController {
   static async getById(req, res, next) {
     try {
       const id = req.params.id;
-      const [result] = await Recipe.getRecipeById(id);
-      res.status(StatusCodes.UNPROCESSABLE_ENTITY).json(result);
-    } catch (error) {
-      console.log(error.message);
-    }
-    next();
-  }
-
-  static async getByCategory(req, res, next) {
-    try {
-      const idCategory = req.params.id;
-      const [result] = await Recipe.getRecipeByCategory(idCategory);
+      const [result] = await Category.getCategoryById(id);
       res.status(StatusCodes.UNPROCESSABLE_ENTITY).json(result);
     } catch (error) {
       console.log(error.message);
@@ -69,4 +58,4 @@ class RecipeController {
   }
 }
 
-export default RecipeController;
+export default CategoryController;
