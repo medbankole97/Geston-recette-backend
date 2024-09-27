@@ -1,25 +1,26 @@
 # Gestion Recettes API
 
-Cette API permet de gérer des recettes, y compris leur création, lecture, mise à jour et suppression.
+Cette API permet de gérer des recettes et des catégories, en allant de leur création, lecture, mise à jour et suppression.
 
 ## Prérequis
 
 - Node.js (version 14 ou supérieure)
 - MySQL (ou un autre système de gestion de base de données compatible)
 - Postman (pour tester l'API)
+- Docker (v.4.30 ou supérieure)
 
 ## Installation
 
 1. **Clonez le dépôt** :
 
 ```bash
-    git clone https://github.com/Aichetou-Gaye/Gestion-Recettes-API.git
+    git clone https://github.com/Aichetou-Gaye/gestion-recette-backEnd.git
 ```
 
 2.  **Acceder au dossier du projet**
 
 ```bash
-  cd Gestion-Recettes-API
+  cd gestion-recette-backEnd
 ```
 
 3. **Installez les dépendances**
@@ -36,55 +37,50 @@ Cette API permet de gérer des recettes, y compris leur création, lecture, mise
    npm start
 ```
 
-- Importer la collection (Collection.json) dans postman pour effectuer des tests;
+- Importer la collection (postman_collection.json) dans postman pour effectuer des tests;
 
 ## Endpoints API
+
+### Endpoints Recettes
 
 **Récupérer toutes les recettes**
 
 - URL : /recipes
 - Méthode : GET
+- Réponse:  Liste de toutes les recettes;
 
-```
-[
-    {
-        "id": 1,
-        "titre": "Recette 1",
-        "ingredients": "Ingrédients de la recette 1",
-        "type": "Entrée"
-    },
+**Récupérer une recette**
 
-]
-```
+- URL : /recipes/:id
+- Méthode : GET
+- Réponse:  Détails d'une recette;
 
 **Créer une nouvelle recette**
 
 - URL : /recipes
 - Méthode : POST
-
 ```
 {
     "titre": "Nouvelle Recette",
-    "ingredients": "Ingrédients de la nouvelle recette",
+    "ingredients": "Ingrédients de la recette",
     "type": "Plat principal"
+    "categorie_id": 1
 }
 ```
-
-- Réponse: `"Added successfully"`
+- Réponse: `"Added successfully"`;
 
   **Mettre à jour une recette**
 
 - URL : /recipes/:id
 - Méthode : PUT
-
 ```
 {
    "titre": "Recette Modifiée",
    "ingredients": "Ingrédients de la recette modifiée",
-   "type": "Dessert"
+   "type": "type modifiée",
+   "categorie_id": 1
   }
 ```
-
 - Réponse: `"Updated successfully"`
 
   **Supprimer une recette**
@@ -93,23 +89,77 @@ Cette API permet de gérer des recettes, y compris leur création, lecture, mise
 - Méthode : DELETE
 - Réponse: `"Deleted successfully"`
 
-### Les étapes pour construire et lancer le conteneur Docker:
+### Endpoints Catégories
 
-```bash
-docker compose up --build
+**Récupérer toutes les categories**
+
+- URL : /categories
+- Méthode : GET
+- Réponse:  Liste de toutes les categories;
+
+**Récupérer une catégorie**
+
+- URL : /categories/:id
+- Méthode : GET
+- Réponse:  Détails d'une catégorie;
+
+**Créer une nouvelle categorie**
+
+- URL : /categories
+- Méthode : POST
 ```
-
-```bash
-docker exec -it gestion_recettes mysql -u root -p
+{
+    "nom": "Nouvelle categorie"
+}
 ```
+- Réponse: `"Added successfully"`;
 
-### Pour exécuter les tests unitaires:
+  **Mettre à jour une categorie**
+
+- URL : /categories/:id
+- Méthode : PUT
+```
+{
+   "nom": "categorie Modifiée"
+  }
+```
+- Réponse: `"Updated successfully"`
+
+  **Supprimer une categorie**
+
+- URL : /categories/:id
+- Méthode : DELETE
+- Réponse: `"Deleted successfully"`
+
+### Tests unitaires
 
 ```bash
 npm test
 ```
 
-## Auteurs:
+## Docker
+
+### Builder l'image docker
+
+```bash
+docker compose up --build
+```
+### Connexion à Mysql
+
+- Sur la ligne de commande executez pour utiliser mysql :
+
+```bash
+docker exec -it gestion_recette bash
+```
+
+```bash
+mysql -u root -p
+```
+- Importez la collection dans Postman pour communiquez via l'URL:
+[postman_collection.json](postman_collection.json)
+
+
+## Auteurs
 
 [Aichetou Gaye](https://github.com/Aichetou-Gaye)
 
