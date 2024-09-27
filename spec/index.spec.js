@@ -1,229 +1,348 @@
+import pool from '../src/config/db.js';
+import Category from '../src/models/Category.js';
 import Recipe from '../src/models/Recipe.js';
 
 describe('Recipe tests', () => {
-  it('can be create recipe', async () => {
+  it('can get all recipes', async () => {
+    const connection = await pool.getConnection();
     try {
-      const recipe = { titre: 'crepe', type: 'dessert', ingredients: 'farine' };
-      const result = await Recipe.createRecipe(
-        recipe.titre,
-        recipe.ingredients,
-        recipe.type
-      );
-      expect(result).toBe(true);
+      const result = await Recipe.recipes();
+      expect(result).not.toEqual([]);
     } catch (error) {
-      console.error('Error creating recipe:', error);
+      console.log(error.message);
+    } finally {
+      connection.release();
     }
   });
 
-  it('can be update recipe', async () => {
+  it('can get all categories', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const result = await Category.categories();
+      expect(result).not.toEqual([]);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can create recipe', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const recipe = {
+        titre: 'crepes',
+        type: 'dessert',
+        ingredients: 'farine, oeuf, lait',
+        categorie_id: 5,
+      };
+      const result = await Recipe.store(
+        recipe.titre,
+        recipe.ingredients,
+        recipe.type,
+        recipe.categorie_id
+      );
+      expect(result).toBe(true);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it("can't create recipe", async () => {
+    const connection = await pool.getConnection();
+    try {
+      const recipe = {
+        titre: null,
+        type: 'dessert',
+        ingredients: 'farine, oeuf, lait',
+        categorie_id: 5,
+      };
+      const result = await Recipe.store(
+        recipe.titre,
+        recipe.ingredients,
+        recipe.type,
+        recipe.categorie_id
+      );
+      expect(result).toBe(true);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can create category', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const categorie = { nom: 'Menu Italien' };
+      const result = await Category.store(categorie.nom);
+      expect(result).toBe(true);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it("can't create category", async () => {
+    const connection = await pool.getConnection();
+    try {
+      const categorie = { nom: null };
+      const result = await Category.store(categorie.nom);
+      expect(result).toBe(false);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can update recipe', async () => {
+    const connection = await pool.getConnection();
     try {
       const updatedRecipe = {
-        titre: 'gâteau',
+        titre: 'Gâteau',
         type: 'dessert',
-        ingredients: 'farine, sucre',
+        ingredients: 'farine, sucre, oeuf, lait',
+        categorie_id: 2,
       };
 
-      const updateResult = await Recipe.editRecipe(
+      const result = await Recipe.update(
         6,
         updatedRecipe.titre,
         updatedRecipe.ingredients,
-        updatedRecipe.type
+        updatedRecipe.type,
+        updatedRecipe.categorie_id
       );
-
-      expect(updateResult).toBe(true);
-    } catch (error) {
-      console.error('Error updating recipe:', error);
-    }
-  });
-
-  it('can get all recipes', async () => {
-    try {
-      const allRecipes = await Recipe.getRecipes();
-
-      expect(allRecipes).not.toBeNull();
-      expect(allRecipes.length).toBeGreaterThan(0);
-    } catch (error) {
-      console.error('Error fetching recipes:', error);
-    }
-  });
-
-  it('can be delete recipe', async () => {
-    try {
-      const result = await Recipe.delRecipe(8);
 
       expect(result).toBe(true);
     } catch (error) {
-      console.error('Error deleting recipe:', error);
+      console.log(error.message);
+    } finally {
+      connection.release();
     }
   });
-  //   const idRecipe = result.insertId;
-  //   expect(result).toBe(true);
-  //   expect(recipeId).toEqual(idRecipe);
-  // } catch (error) {
-  //   console.log(error);
-  // } finally {
-  //   (await connection).release();
-  // }
+
+  it("can't update recipe", async () => {
+    const connection = await pool.getConnection();
+    try {
+      const updatedRecipe = {
+        titre: 'Gâteau',
+        type: 'dessert',
+        ingredients: 'farine, sucre, oeuf, lait',
+        categorie_id: 9,
+      };
+
+      const result = await Recipe.update(
+        6,
+        updatedRecipe.titre,
+        updatedRecipe.ingredients,
+        updatedRecipe.type,
+        updatedRecipe.categorie_id
+      );
+
+      expect(result).toBe(false);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can update category', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const updatedCategory = { nom: 'Apéro' };
+      const result = await Category.update(6, updatedCategory.nom);
+      expect(result).toBe(true);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can delete recipe', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const deleteId = 7;
+      const result = await Recipe.destroy(deleteId);
+      expect(result).toBe(true);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can delete category', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const deleteId = 6;
+      const result = await Category.destroy(deleteId);
+      expect(result).toBe(true);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can get category by Id', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const id = 5;
+      const result = await Category.getCategoryById(id);
+      expect(result).not.toEqual([]);
+    } catch (error) {
+      console.error('Error getting category:', error);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it("can't get category by Id", async () => {
+    const connection = await pool.getConnection();
+    try {
+      const id = 13;
+      const result = await Category.getCategoryById(id);
+      expect(result).toEqual([]);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can get recipe by Id', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const id = 6;
+      const result = await Recipe.getRecipeById(id);
+      expect(result).not.toEqual([]);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it("can't get recipe by Id", async () => {
+    const connection = await pool.getConnection();
+    try {
+      const id = 16;
+      const result = await Recipe.getRecipeById(id);
+      expect(result).toEqual([]);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can verify existence of id category', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const id = 5;
+      const result = await Category.getId(id);
+      expect(result).not.toBe(0);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it("can't verify existence of id category", async () => {
+    const connection = await pool.getConnection();
+    try {
+      const id = 15;
+      const result = await Category.getId(id);
+      expect(result).toBe(0);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can verify existence of id recipe', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const id = 6;
+      const result = await Recipe.getId(id);
+      expect(result).not.toBe(0);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it("can't verify existence of id recipe", async () => {
+    const connection = await pool.getConnection();
+    try {
+      const id = 26;
+      const result = await Recipe.getId(id);
+      expect(result).toBe(0);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can get recipe by category', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const id = 5;
+      const result = await Recipe.getRecipeByCategory(id);
+      expect(result).not.toEqual([]);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it("can't get recipe by category", async () => {
+    const connection = await pool.getConnection();
+    try {
+      const id = 25;
+      const result = await Recipe.getRecipeByCategory(id);
+      expect(result).toEqual([]);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it('can get recipe by title', async () => {
+    const connection = await pool.getConnection();
+    try {
+      const title = 'crepes';
+      const result = await Recipe.checkRecipe(title);
+      expect(result).not.toEqual([]);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
+
+  it("can't get recipe by title", async () => {
+    const connection = await pool.getConnection();
+    try {
+      const title = 'Saucisse';
+      const result = await Recipe.checkRecipe(title);
+      expect(result).toBe(0);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      connection.release();
+    }
+  });
 });
-
-// it('can not create recipe with invalid data', async () => {
-//   try {
-//     const recipe = {
-//       titre: null,
-//       ingredients: 'Lait, Chocolat, sucre',
-//       type: 'Dessert',
-//     };
-//     const result = await Recipe.createRecipe(
-//       recipe.titre,
-//       recipe.ingredients,
-//       recipe.type
-//     );
-//     recipeId = result.insertId;
-//     const getById = await Recipe.getRecipeById(recipeId);
-//     expect(recipeId).toBeNull();
-//     expect(getById).toEqual([]);
-//   } catch (error) {
-//     console.log(error);
-//   } finally {
-//     (await connection).release();
-//   }
-// });
-
-// it('Can get all recipes', async () => {
-//   try {
-//     const getAll = await Recipe.getRecipes();
-//     expect(getAll).not.toBeNull();
-//   } catch (error) {
-//     console.log(error);
-//   } finally {
-//     (await connection).release();
-//   }
-// });
-
-// it('Can get recipe by valid ID', async () => {
-//   try {
-//     const recipe = {
-//       titre: 'Pancakes',
-//       ingredients: 'Farine, Oeufs, Lait',
-//       type: 'Petit Déjeuner',
-//     };
-//     const result = await Recipe.createRecipe(
-//       recipe.titre,
-//       recipe.ingredients,
-//       recipe.type
-//     );
-//     const recipeId = result.insertId;
-//     const getById = await Recipe.getRecipeById(recipeId);
-//     expect(getById).not.toBeNull();
-//     expect(getById[0].titre).toBe(recipe.titre);
-//   } catch (error) {
-//     console.log(error);
-//   } finally {
-//     (await connection).release();
-//   }
-// });
-
-// it('Cannot get recipe by invalid ID', async () => {
-//   try {
-//     const getById = await Recipe.getRecipeById(9999); // Un ID qui n'existe pas
-//     expect(getById).toEqual([]);
-//   } catch (error) {
-//     console.log(error);
-//   } finally {
-//     (await connection).release();
-//   }
-// });
-
-// it('Can edit recipe', async () => {
-//   try {
-//     const newRecipe = {
-//       titre: 'Pizza',
-//       ingredients: 'Farine, Tomate, Fromage',
-//       type: 'Dîner',
-//     };
-//     const createResult = await Recipe.createRecipe(
-//       newRecipe.titre,
-//       newRecipe.ingredients,
-//       newRecipe.type
-//     );
-//     const recipeId = createResult.insertId;
-
-//     // Modification de la recette
-//     const updatedRecipe = {
-//       titre: 'Pizza Deluxe',
-//       ingredients: 'Farine, Tomate, Fromage, Champignons',
-//       type: 'Dîner',
-//     };
-//     await Recipe.editRecipe(
-//       recipeId,
-//       updatedRecipe.titre,
-//       updatedRecipe.ingredients,
-//       updatedRecipe.type
-//     );
-
-//     const updated = await Recipe.getRecipeById(recipeId);
-//     expect(updated[0].titre).toBe('Pizza Deluxe');
-//     expect(updated[0].ingredients).toBe(
-//       'Farine, Tomate, Fromage, Champignons'
-//     );
-//   } catch (error) {
-//     console.log(error);
-//   } finally {
-//     (await connection).release();
-//   }
-// });
-
-// it('Can delete recipe', async () => {
-//   try {
-//     const recipe = {
-//       titre: 'Salade',
-//       ingredients: 'Laitue, Tomate, Concombre',
-//       type: 'Entrée',
-//     };
-//     const result = await Recipe.createRecipe(
-//       recipe.titre,
-//       recipe.ingredients,
-//       recipe.type
-//     );
-//     const recipeId = result.insertId;
-
-//     const deleted = await Recipe.delRecipe(recipeId);
-//     const checkDeleted = await Recipe.getRecipeById(recipeId);
-
-//     expect(deleted).toBe(true);
-//     expect(checkDeleted).toEqual([]);
-//   } catch (error) {
-//     console.log(error);
-//   } finally {
-//     (await connection).release();
-//   }
-// });
-
-// it('Can check if recipe exists by title', async () => {
-//   try {
-//     const recipe = {
-//       titre: 'Crêpes',
-//       ingredients: 'Farine, Oeufs, Lait',
-//       type: 'Dessert',
-//     };
-//     await Recipe.createRecipe(recipe.titre, recipe.ingredients, recipe.type);
-
-//     const check = await Recipe.checkRecipe(recipe.titre);
-//     expect(check).toBeGreaterThan(0);
-//   } catch (error) {
-//     console.log(error);
-//   } finally {
-//     (await connection).release();
-//   }
-// });
-
-// it("Returns 0 if recipe doesn't exist", async () => {
-//   try {
-//     const check = await Recipe.checkRecipe("Recette qui n'existe pas");
-//     expect(check).toBe(0);
-//   } catch (error) {
-//     console.log(error);
-//   } finally {
-//     (await connection).release();
-//   }
-// });

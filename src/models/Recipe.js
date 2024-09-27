@@ -1,4 +1,5 @@
 import pool from '../config/db.js';
+
 class Recipe {
   static async checkRecipe(titre) {
     const connection = await pool.getConnection();
@@ -18,6 +19,15 @@ class Recipe {
     return result.length;
   }
 
+  static async getRecipeByCategory(categorie_id) {
+    const connection = await pool.getConnection();
+    const [result] = await connection.execute(
+      'select * from recettes where categorie_id = ?',
+      [categorie_id]
+    );
+    return result;
+  }
+
   static async getRecipeById(id) {
     const connection = await pool.getConnection();
     const [result] = await connection.execute(
@@ -27,31 +37,32 @@ class Recipe {
     return result;
   }
 
-  static async getRecipes() {
+  static async recipes() {
     const connection = await pool.getConnection();
     const [result] = await connection.execute('select * from recettes');
     return result;
   }
 
-  static async createRecipe(titre, ingredients, type) {
+  static async store(titre, ingredients, type, categorie_id) {
     const connection = await pool.getConnection();
     await connection.execute(
-      'INSERT INTO recettes(titre, ingredients, type) VALUES (?, ?, ?)',
-      [titre, ingredients, type]
+      'INSERT INTO recettes(titre, ingredients, type, categorie_id) VALUES (?, ?, ?, ?)',
+      [titre, ingredients, type, categorie_id]
     );
     return true;
   }
 
-  static async delRecipe(id) {
+  static async destroy(id) {
     const connection = await pool.getConnection();
     await connection.execute('delete from recettes where id = ?', [id]);
     return true;
   }
-  static async editRecipe(id, titre, ingredients, type) {
+
+  static async update(id, titre, ingredients, type, categorie_id) {
     const connection = await pool.getConnection();
     await connection.execute(
-      'update recettes set titre = ?, ingredients = ?, type = ? where id = ?',
-      [titre, ingredients, type, id]
+      'update recettes set titre = ?, ingredients = ?, type = ?, categorie_id = ? where id = ?',
+      [titre, ingredients, type, categorie_id, id]
     );
     return true;
   }
