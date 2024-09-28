@@ -5,7 +5,7 @@ class RecipeController {
   static async recipes(_req, res, next) {
     try {
       const [result] = await Recipe.recipes();
-      res.status(StatusCodes.UNPROCESSABLE_ENTITY).json(result);
+      res.status(StatusCodes.OK).json(result);
     } catch (error) {
       console.log(error.message);
     }
@@ -16,7 +16,7 @@ class RecipeController {
     try {
       const { titre, ingredients, type, categorie_id } = req.body;
       await Recipe.store(titre, ingredients, type, categorie_id);
-      res.status(StatusCodes.UNPROCESSABLE_ENTITY).json('Added successfully');
+      res.status(StatusCodes.OK).json('Added successfully');
     } catch (error) {
       console.log(error.message);
     }
@@ -28,7 +28,7 @@ class RecipeController {
       const id = req.params.id;
       const { titre, ingredients, type, categorie_id } = req.body;
       await Recipe.update(id, titre, ingredients, type, categorie_id);
-      res.status(StatusCodes.UNPROCESSABLE_ENTITY).json('Updated successfully');
+      res.status(StatusCodes.OK).json('Updated successfully');
     } catch (error) {
       console.log(error.message);
     }
@@ -39,7 +39,7 @@ class RecipeController {
     try {
       const id = req.params.id;
       await Recipe.destroy(id);
-      res.status(StatusCodes.UNPROCESSABLE_ENTITY).json('Deleted successfully');
+      res.status(StatusCodes.OK).json('Deleted successfully');
     } catch (error) {
       console.log(error.message);
     }
@@ -50,18 +50,7 @@ class RecipeController {
     try {
       const id = req.params.id;
       const [result] = await Recipe.getRecipeById(id);
-      res.status(StatusCodes.UNPROCESSABLE_ENTITY).json(result);
-    } catch (error) {
-      console.log(error.message);
-    }
-    next();
-  }
-
-  static async getByCategory(req, res, next) {
-    try {
-      const idCategory = req.params.id;
-      const [result] = await Recipe.getRecipeByCategory(idCategory);
-      res.status(StatusCodes.UNPROCESSABLE_ENTITY).json(result);
+      res.status(StatusCodes.OK).json(result);
     } catch (error) {
       console.log(error.message);
     }

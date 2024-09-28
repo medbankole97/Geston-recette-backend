@@ -63,4 +63,10 @@ router.get(
   CategoryController.getById
 );
 
+router.get(
+  '/categories/recipes/:id',
+  deleteRequestValidatorCategory,
+  CategoryController.getRecipeInCategory
+);
+
 export default router;

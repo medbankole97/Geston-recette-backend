@@ -21,8 +21,8 @@ class Recipe {
 
   static async getRecipeByCategory(categorie_id) {
     const connection = await pool.getConnection();
-    const [result] = await connection.execute(
-      'select * from recettes where categorie_id = ?',
+    const result = await connection.execute(
+      'select titre, ingredients, type, categorie_id as categorie from recettes where categorie_id = ?',
       [categorie_id]
     );
     return result;
@@ -31,7 +31,7 @@ class Recipe {
   static async getRecipeById(id) {
     const connection = await pool.getConnection();
     const [result] = await connection.execute(
-      'select * from recettes where id = ?',
+      'select r.titre, r.ingredients, r.type, c.id as id_cat, c.nom as nom from recettes as r, categories as c where r.categorie_id = c.id and r.id = ?',
       [id]
     );
     return result;
@@ -39,7 +39,9 @@ class Recipe {
 
   static async recipes() {
     const connection = await pool.getConnection();
-    const result = await connection.execute('select * from recettes');
+    const result = await connection.execute(
+      'select r.id as id, r.titre, r.ingredients, r.type, c.id as id_cat, c.nom as nom from recettes as r, categories as c where r.categorie_id = c.id'
+    );
     return result;
   }
 
