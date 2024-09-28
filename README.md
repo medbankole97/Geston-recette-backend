@@ -47,18 +47,19 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 
 - URL : /recipes
 - Méthode : GET
-- Réponse:  Liste de toutes les recettes;
+- Réponse: Liste de toutes les recettes;
 
 **Récupérer une recette**
 
 - URL : /recipes/:id
 - Méthode : GET
-- Réponse:  Détails d'une recette;
+- Réponse: Détails d'une recette;
 
 **Créer une nouvelle recette**
 
 - URL : /recipes
 - Méthode : POST
+
 ```
 {
     "titre": "Nouvelle Recette",
@@ -67,12 +68,14 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
     "categorie_id": 1
 }
 ```
+
 - Réponse: `"Added successfully"`;
 
   **Mettre à jour une recette**
 
 - URL : /recipes/:id
 - Méthode : PUT
+
 ```
 {
    "titre": "Recette Modifiée",
@@ -81,6 +84,7 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
    "categorie_id": 1
   }
 ```
+
 - Réponse: `"Updated successfully"`
 
   **Supprimer une recette**
@@ -95,34 +99,38 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 
 - URL : /categories
 - Méthode : GET
-- Réponse:  Liste de toutes les categories;
+- Réponse: Liste de toutes les categories;
 
 **Récupérer une catégorie**
 
 - URL : /categories/:id
 - Méthode : GET
-- Réponse:  Détails d'une catégorie;
+- Réponse: Détails d'une catégorie;
 
 **Créer une nouvelle categorie**
 
 - URL : /categories
 - Méthode : POST
+
 ```
 {
     "nom": "Nouvelle categorie"
 }
 ```
+
 - Réponse: `"Added successfully"`;
 
   **Mettre à jour une categorie**
 
 - URL : /categories/:id
 - Méthode : PUT
+
 ```
 {
    "nom": "categorie Modifiée"
   }
 ```
+
 - Réponse: `"Updated successfully"`
 
   **Supprimer une categorie**
@@ -144,6 +152,7 @@ npm test
 ```bash
 docker compose up --build
 ```
+
 ### Connexion à Mysql
 
 - Sur la ligne de commande executez pour utiliser mysql :
@@ -155,9 +164,9 @@ docker exec -it gestion_recette bash
 ```bash
 mysql -u root -p
 ```
-- Importez la collection dans Postman pour communiquez via l'URL:
-[postman_collection.json](postman_collection.json)
 
+- Importez la collection dans Postman pour communiquez via l'URL:
+  [postman_collection.json](postman_collection.json)
 
 ## Auteurs
 

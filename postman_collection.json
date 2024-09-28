@@ -1,236 +1,200 @@
 {
-	"info": {
-		"_postman_id": "ca5eeab6-278e-4fda-bf10-b38b0afbecf4",
-		"name": "API-Recipes",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "38098502"
-	},
-	"item": [
-		{
-			"name": "GET-RECIPES",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3020/recipes",
-					"host": [
-						"localhost"
-					],
-					"port": "3020",
-					"path": [
-						"recipes"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST-RECIPES",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"titre\": \"Riz à la viande\",\r\n    \"ingredients\" : \"riz, viande, oignones, huile, épices\",\r\n    \"type\": \"Plat\",\r\n    \"categorie_id\": 1\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3020/recipes",
-					"host": [
-						"localhost"
-					],
-					"port": "3020",
-					"path": [
-						"recipes"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PUT-RECIPES",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"titre\": \"Pancake Chocolat\",\r\n    \"ingredients\" : \"farine, oeuf, lait, Chocolat\",\r\n    \"type\": \"Dessert\",\r\n    \"categorie_id\": 2\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3020/recipes/3",
-					"host": [
-						"localhost"
-					],
-					"port": "3020",
-					"path": [
-						"recipes",
-						"3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DELETE-RECIPES",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3020/recipes/6",
-					"host": [
-						"localhost"
-					],
-					"port": "3020",
-					"path": [
-						"recipes",
-						"6"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET-CATEGORIES",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3020/categories",
-					"host": [
-						"localhost"
-					],
-					"port": "3020",
-					"path": [
-						"categories"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST-CATEGORIES",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"nom\": \"Cuisine Marocaine\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3020/categories",
-					"host": [
-						"localhost"
-					],
-					"port": "3020",
-					"path": [
-						"categories"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PUT-CATEGORIES",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"nom\": \"Brunch\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3020/categories/7",
-					"host": [
-						"localhost"
-					],
-					"port": "3020",
-					"path": [
-						"categories",
-						"7"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DELETE-CATEGORIES",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3020/categories/7",
-					"host": [
-						"localhost"
-					],
-					"port": "3020",
-					"path": [
-						"categories",
-						"7"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "ca5eeab6-278e-4fda-bf10-b38b0afbecf4",
+    "name": "API-Recipes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38098502"
+  },
+  "item": [
+    {
+      "name": "GET-RECIPES",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3020/recipes",
+          "host": ["localhost"],
+          "port": "3020",
+          "path": ["recipes"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST-RECIPES",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\": \"Riz à la viande\",\r\n    \"ingredients\" : \"riz, viande, oignones, huile, épices\",\r\n    \"type\": \"Plat\",\r\n    \"categorie_id\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3020/recipes",
+          "host": ["localhost"],
+          "port": "3020",
+          "path": ["recipes"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT-RECIPES",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\": \"Pancake Chocolat\",\r\n    \"ingredients\" : \"farine, oeuf, lait, Chocolat\",\r\n    \"type\": \"Dessert\",\r\n    \"categorie_id\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3020/recipes/3",
+          "host": ["localhost"],
+          "port": "3020",
+          "path": ["recipes", "3"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE-RECIPES",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3020/recipes/6",
+          "host": ["localhost"],
+          "port": "3020",
+          "path": ["recipes", "6"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-CATEGORIES",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3020/categories",
+          "host": ["localhost"],
+          "port": "3020",
+          "path": ["categories"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST-CATEGORIES",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nom\": \"Cuisine Marocaine\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3020/categories",
+          "host": ["localhost"],
+          "port": "3020",
+          "path": ["categories"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT-CATEGORIES",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nom\": \"Brunch\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3020/categories/7",
+          "host": ["localhost"],
+          "port": "3020",
+          "path": ["categories", "7"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE-CATEGORIES",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3020/categories/7",
+          "host": ["localhost"],
+          "port": "3020",
+          "path": ["categories", "7"]
+        }
+      },
+      "response": []
+    }
+  ]
 }
