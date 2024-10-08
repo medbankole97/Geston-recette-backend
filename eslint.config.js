@@ -24,7 +24,7 @@ export default [
       prettier: pluginPrettier,
     },
     rules: {
-      'prettier/prettier': 'error', // Cela affiche une erreur lorsque Prettier trouve des problèmes de formatage
+      'prettier/prettier': 'error',
     },
   },
   pluginPrettierConfig,

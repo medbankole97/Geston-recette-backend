@@ -8,8 +8,8 @@ const addRequestValidatorRecipe = [
     .notEmpty()
     .withMessage('Titre est obligatoire!')
     .bail()
-    .isLength({ min: 4 })
-    .withMessage('Minimum 4 caractères requis!')
+    .isLength({ min: 5, max: 100 })
+    .withMessage('Minimum 6 caractères requis!')
     .bail()
     .custom(async (value) => {
       const result = await Recipe.checkRecipe(value);
@@ -29,8 +29,9 @@ const addRequestValidatorRecipe = [
     .notEmpty()
     .withMessage('Type est obligatoire!')
     .bail()
-    .isLength({ min: 4 })
-    .withMessage('Minimum 4 caractères requis!')
+    .isLength({ min: 3 })
+    .isIn(['Entrée', 'Plat', 'Dessert'])
+    .withMessage('Minimum 3 caractères requis!')
     .bail(),
   check('categorie_id')
     .notEmpty()
@@ -58,8 +59,8 @@ const addRequestValidatorCategory = [
     .notEmpty()
     .withMessage('Nom est obligatoire!')
     .bail()
-    .isLength({ max: 50 })
-    .withMessage('Maximum 50 caractères!')
+    .isLength({ max: 100 })
+    .withMessage('Maximum 100 caractères!')
     .bail()
     .custom(async (value) => {
       const result = await Category.checkCategory(value);
@@ -161,8 +162,9 @@ const updateRequestValidatorRecipe = [
     .notEmpty()
     .withMessage('Type est obligatoire!')
     .bail()
-    .isLength({ min: 4 })
-    .withMessage('Minimum 4 caractères requis!')
+    .isLength({ min: 3 })
+    .isIn(['Entrée', 'Plat', 'Dessert'])
+    .withMessage('Minimum 3 caractères requis!')
     .bail(),
   check('categorie_id')
     .notEmpty()

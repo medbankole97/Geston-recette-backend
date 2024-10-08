@@ -14,7 +14,7 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 1. **Clonez le dépôt** :
 
 ```bash
-    git clone https://github.com/Aichetou-Gaye/gestion-recette-backEnd.git
+    git clone 
 ```
 
 2.  **Acceder au dossier du projet**
@@ -142,34 +142,13 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 ### Tests unitaires
 
 ```bash
-npm test
-```
-
-## Docker
-
-### Builder l'image docker
-
-```bash
-docker compose up --build
+npm test 
 ```
 
 ### Connexion à Mysql
-
 - Sur la ligne de commande executez pour utiliser mysql :
-
-```bash
-docker exec -it gestion_recette bash
-```
-
-```bash
-mysql -u root -p
-```
-
 - Importez la collection dans Postman pour communiquez via l'URL:
   [postman_collection.json](postman_collection.json)
 
 ## Auteurs
-
-[Aichetou Gaye](https://github.com/Aichetou-Gaye)
-
 [Mohamed Bankolé](https://github.com/medbankole97)
