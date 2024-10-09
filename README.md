@@ -33,7 +33,7 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 
 - Importez la base de données qui se trouve dans la racine du projet sous le nom de : `script.sql`;
 
-- Remplacer  vos informations de connexion à MySQL dans **.env.sample** en le renommant `.env` ;
+- Remplacer vos informations de connexion à MySQL dans **.env.sample** en le renommant `.env` ;
 - Pour démarrer le projet:
 
 ```bash
@@ -153,6 +153,7 @@ npm test
 ```bash
 npm run lint
 ```
+
 ```bash
 npm run lint:fix
 ```
@@ -164,4 +165,17 @@ npm run format
 ```
 
 ## Auteur
+
+=======
+npm test
+
+```
+
+### Connexion à Mysql
+- Sur la ligne de commande executez pour utiliser mysql :
+- Importez la collection dans Postman pour communiquez via l'URL:
+  [postman_collection.json](postman_collection.json)
+
+## Auteurs
 [Mohamed Bankolé](https://github.com/medbankole97)
+```
