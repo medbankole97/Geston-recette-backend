@@ -165,17 +165,5 @@ npm run format
 ```
 
 ## Auteur
-
-=======
-npm test
-
-```
-
-### Connexion à Mysql
-- Sur la ligne de commande executez pour utiliser mysql :
-- Importez la collection dans Postman pour communiquez via l'URL:
-  [postman_collection.json](postman_collection.json)
-
-## Auteurs
 [Mohamed Bankolé](https://github.com/medbankole97)
-```
+
