@@ -163,8 +163,5 @@ npm run lint:fix
 npm run format
 ```
 
-- Importez la collection dans Postman pour communiquez via l'URL:
-  [postman_collection.json](postman_collection.json)
-
 ## Auteur
 [Mohamed Bankolé](https://github.com/medbankole97)
