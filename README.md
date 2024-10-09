@@ -7,7 +7,7 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 - Node.js (version 14 ou supérieure)
 - MySQL (ou un autre système de gestion de base de données compatible)
 - Postman (pour tester l'API)
-- Docker (v.4.30 ou supérieure)
+
 
 ## Installation
 
