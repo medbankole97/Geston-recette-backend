@@ -119,7 +119,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\r\n        \"titre\": \"Macaroni Verdana\",\r\n        \"ingredients\": \"Spaghetti, eggs, bacon, Parmesan cheese\",\r\n        \"type\": \"Plat\",\r\n        \"categorie_id\": 2\r\n\r\n    }",
+					"raw": "    {\r\n        \"titre\": \"Vermicel babana\",\r\n        \"ingredients\": \"Spaghetti, eggs, bacon, Parmesan cheese\",\r\n        \"type\": \"Plat\",\r\n        \"categorie_id\": 2\r\n\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -127,7 +127,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3022/recipes/38",
+					"raw": "http://localhost:3022/recipes/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -135,7 +135,7 @@
 					"port": "3022",
 					"path": [
 						"recipes",
-						"38"
+						"10"
 					]
 				}
 			},
@@ -148,7 +148,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\r\n        \"nom\": \"Dessert salée\"\r\n    }",
+					"raw": "    {\r\n        \"nom\": \"Dessert salade\"\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -156,7 +156,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3022/categories/11",
+					"raw": "http://localhost:3022/categories/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -164,7 +164,7 @@
 					"port": "3022",
 					"path": [
 						"categories",
-						"11"
+						"3"
 					]
 				}
 			},
@@ -185,7 +185,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3022/recipes/13",
+					"raw": "http://localhost:3022/recipes/14",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -193,7 +193,7 @@
 					"port": "3022",
 					"path": [
 						"recipes",
-						"13"
+						"14"
 					]
 				}
 			},
@@ -214,7 +214,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3022/categories/26",
+					"raw": "http://localhost:3022/categories/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -222,7 +222,7 @@
 					"port": "3022",
 					"path": [
 						"categories",
-						"26"
+						"7"
 					]
 				}
 			},
