@@ -61,7 +61,7 @@ class CategoryController {
   static async getRecipeInCategory(req, res, next) {
     try {
       const id = req.params.id;
-      const [result] = await Recipe.getRecipeByCategory(id);
+      const result = await Recipe.getRecipeByCategory(id);
       res.status(StatusCodes.OK).json(result);
     } catch (error) {
       console.log(error.message);

@@ -14,7 +14,7 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 1. **Clonez le dépôt** :
 
 ```bash
-    git clone https://github.com/Aichetou-Gaye/gestion-recette-backEnd.git
+    git clone https://github.com/medbankole97/Geston-recette-backend.git
 ```
 
 2.  **Acceder au dossier du projet**
@@ -31,6 +31,9 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 
 4. **Utilisation**
 
+- Importez la base de données qui se trouve dans la racine du projet sous le nom de : `script.sql`;
+
+- Remplacer  vos informations de connexion à MySQL dans **.env.sample** en le renommant `.env` ;
 - Pour démarrer le projet:
 
 ```bash
@@ -145,31 +148,23 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 npm test
 ```
 
-## Docker
-
-### Builder l'image docker
+### Eslint : corriger le code
 
 ```bash
-docker compose up --build
+npm run lint
+```
+```bash
+npm run lint:fix
 ```
 
-### Connexion à Mysql
-
-- Sur la ligne de commande executez pour utiliser mysql :
+### Prettier :formater le code
 
 ```bash
-docker exec -it gestion_recette bash
-```
-
-```bash
-mysql -u root -p
+npm run format
 ```
 
 - Importez la collection dans Postman pour communiquez via l'URL:
   [postman_collection.json](postman_collection.json)
 
-## Auteurs
-
-[Aichetou Gaye](https://github.com/Aichetou-Gaye)
-
+## Auteur
 [Mohamed Bankolé](https://github.com/medbankole97)

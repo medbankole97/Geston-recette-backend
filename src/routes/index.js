@@ -9,6 +9,8 @@ import {
   updateRequestValidatorCategory,
   deleteRequestValidatorRecipe,
   deleteRequestValidatorCategory,
+  getRequestValidatorCategory,
+  getRequestValidatorRecipe,
 } from '../validators/RecetteValidator.js';
 
 const router = express.Router();
@@ -30,11 +32,7 @@ router.put(
   RecipeController.update
 );
 
-router.get(
-  '/recipes/:id',
-  deleteRequestValidatorRecipe,
-  RecipeController.getById
-);
+router.get('/recipes/:id', getRequestValidatorRecipe, RecipeController.getById);
 
 //categories route
 router.get('/categories', CategoryController.categories);
@@ -59,13 +57,13 @@ router.put(
 
 router.get(
   '/categories/:id',
-  deleteRequestValidatorCategory,
+  getRequestValidatorCategory,
   CategoryController.getById
 );
 
 router.get(
   '/categories/recipes/:id',
-  deleteRequestValidatorCategory,
+  getRequestValidatorCategory,
   CategoryController.getRecipeInCategory
 );
 

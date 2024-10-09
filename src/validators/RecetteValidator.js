@@ -6,10 +6,13 @@ import Category from '../models/Category.js';
 const addRequestValidatorRecipe = [
   check('titre')
     .notEmpty()
-    .withMessage('Titre est obligatoire!')
+    .withMessage('Titre ne peut pas être vide!')
     .bail()
-    .isLength({ min: 4 })
-    .withMessage('Minimum 4 caractères requis!')
+    .isLength({ min: 5 })
+    .withMessage('Minimum 5 caractères requis!')
+    .bail()
+    .isLength({ max: 100 })
+    .withMessage('Maximum 100 caractères limite!')
     .bail()
     .custom(async (value) => {
       const result = await Recipe.checkRecipe(value);
@@ -20,18 +23,20 @@ const addRequestValidatorRecipe = [
     }),
   check('ingredients')
     .notEmpty()
-    .withMessage('Ingredients est obligatoire!')
+    .withMessage('Ingredients ne peut pas être vide!')
     .bail()
-    .isLength({ min: 10, max: 50 })
-    .withMessage('Entre 10 et 50 caractères!')
+    .isLength({ min: 10 })
+    .withMessage('Minimum 10 caractères requis!')
+    .bail()
+    .isLength({ max: 500 })
+    .withMessage('Maximum 500 caractères limite!')
     .bail(),
   check('type')
     .notEmpty()
-    .withMessage('Type est obligatoire!')
+    .withMessage('Type ne peut pas être vide!')
     .bail()
-    .isLength({ min: 4 })
-    .withMessage('Minimum 4 caractères requis!')
-    .bail(),
+    .isIn(['Entrée', 'Dessert', 'Plat'])
+    .withMessage("Type doit être 'Entrée', 'Dessert' ou 'Plat'"),
   check('categorie_id')
     .notEmpty()
     .withMessage('Catégorie est obligatoire!')
@@ -56,10 +61,10 @@ const addRequestValidatorRecipe = [
 const addRequestValidatorCategory = [
   check('nom')
     .notEmpty()
-    .withMessage('Nom est obligatoire!')
+    .withMessage('Le nom est obligatoire!')
     .bail()
-    .isLength({ max: 50 })
-    .withMessage('Maximum 50 caractères!')
+    .isLength({ max: 100 })
+    .withMessage('Maximum 100 caractères limite!')
     .bail()
     .custom(async (value) => {
       const result = await Category.checkCategory(value);
@@ -113,6 +118,60 @@ const deleteRequestValidatorCategory = [
         throw new Error("Cette catégorie n'existe pas!");
       }
       return true;
+    })
+    .custom(async (value) => {
+      const result = await Recipe.getRecipeByCategory(value);
+      const check = result.length;
+      if (check !== 0) {
+        throw new Error('Cette catégorie contient des recettes!');
+      }
+      return true;
+    }),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+      return res
+        .status(StatusCodes.UNPROCESSABLE_ENTITY)
+        .json({ errors: errors.array() });
+    next();
+  },
+];
+
+const getRequestValidatorRecipe = [
+  param('id')
+    .not()
+    .isEmpty()
+    .withMessage('Id est obligatoire!')
+    .bail()
+    .custom(async (value) => {
+      const result = await Recipe.getId(value);
+      if (result === 0) {
+        throw new Error("Cette recette n'existe pas!");
+      }
+      return true;
+    }),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+      return res
+        .status(StatusCodes.UNPROCESSABLE_ENTITY)
+        .json({ errors: errors.array() });
+    next();
+  },
+];
+
+const getRequestValidatorCategory = [
+  param('id')
+    .not()
+    .isEmpty()
+    .withMessage('Id est obligatoire!')
+    .bail()
+    .custom(async (value) => {
+      const result = await Category.getId(value);
+      if (result === 0) {
+        throw new Error("Cette catégorie n'existe pas!");
+      }
+      return true;
     }),
   (req, res, next) => {
     const errors = validationResult(req);
@@ -138,10 +197,13 @@ const updateRequestValidatorRecipe = [
     }),
   check('titre')
     .notEmpty()
-    .withMessage('Titre est obligatoire')
+    .withMessage('Titre ne doit pas être vide')
     .bail()
-    .isLength({ min: 4 })
-    .withMessage('Minimum 4 caractères requis!')
+    .isLength({ min: 5 })
+    .withMessage('Minimum 5 caractères requis!')
+    .bail()
+    .isLength({ max: 100 })
+    .withMessage('Maximum 100 caractères limite!')
     .bail()
     .custom(async (value) => {
       const result = await Recipe.checkRecipe(value);
@@ -152,18 +214,20 @@ const updateRequestValidatorRecipe = [
     }),
   check('ingredients')
     .notEmpty()
-    .withMessage('Ingredients est obligatoire!')
+    .withMessage('Ingredients ne peut pas être vide!')
     .bail()
-    .isLength({ min: 10, max: 50 })
-    .withMessage('Entre 10 et 50 caractères!')
+    .isLength({ min: 10 })
+    .withMessage('Minimum 10 caractères requis!')
+    .bail()
+    .isLength({ max: 500 })
+    .withMessage('Maximum 500 caractères limite!')
     .bail(),
   check('type')
     .notEmpty()
-    .withMessage('Type est obligatoire!')
+    .withMessage('Type ne peut pas être vide!')
     .bail()
-    .isLength({ min: 4 })
-    .withMessage('Minimum 4 caractères requis!')
-    .bail(),
+    .isIn(['Entrée', 'Dessert', 'Plat'])
+    .withMessage("Type doit être 'Entrée', 'Dessert' ou 'Plat'"),
   check('categorie_id')
     .notEmpty()
     .withMessage('Catégorie est obligatoire!')
@@ -199,10 +263,10 @@ const updateRequestValidatorCategory = [
     }),
   check('nom')
     .notEmpty()
-    .withMessage('Nom est obligatoire!')
+    .withMessage('le nom est obligatoire!')
     .bail()
-    .isLength({ max: 50 })
-    .withMessage('Maximum 50 caractères!')
+    .isLength({ max: 100 })
+    .withMessage('Maximum 100 caractères limite!')
     .bail()
     .custom(async (value) => {
       const result = await Category.checkCategory(value);
@@ -228,4 +292,6 @@ export {
   deleteRequestValidatorCategory,
   updateRequestValidatorRecipe,
   updateRequestValidatorCategory,
+  getRequestValidatorRecipe,
+  getRequestValidatorCategory,
 };
