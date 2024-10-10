@@ -14,14 +14,25 @@ class Category {
     }
   }
 
-  static async checkCategory(nom) {
+  static async checkCategory(nom, id = null) {
+    let res = null;
     try {
-      const connection = await pool.getConnection();
-      const [result] = await connection.execute(
-        'select * from categories where nom = ?',
-        [nom]
-      );
-      return result.length;
+      if (id) {
+        const connection = await pool.getConnection();
+        const [result] = await connection.execute(
+          'select * from categories where nom = ? and id != ?',
+          [nom, id]
+        );
+        res = result;
+      } else {
+        const connection = await pool.getConnection();
+        const [result] = await connection.execute(
+          'select * from categories where nom = ?',
+          [nom]
+        );
+        res = result;
+      }
+      return res;
     } finally {
       pool.releaseConnection();
     }

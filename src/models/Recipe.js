@@ -1,14 +1,25 @@
 import pool from '../config/db.js';
 
 class Recipe {
-  static async checkRecipe(titre) {
+  static async checkRecipe(titre, id = null) {
     try {
-      const connection = await pool.getConnection();
-      const [result] = await connection.execute(
-        'select * from recettes where titre = ?',
-        [titre]
-      );
-      return result.length;
+      let res = null;
+      if (id) {
+        const connection = await pool.getConnection();
+        const [result] = await connection.execute(
+          'select * from recettes where titre = ? and id != ?',
+          [titre, id]
+        );
+        res = result;
+      } else {
+        const connection = await pool.getConnection();
+        const [result] = await connection.execute(
+          'select * from recettes where titre = ?',
+          [titre]
+        );
+        res = result;
+      }
+      return res;
     } finally {
       pool.releaseConnection();
     }

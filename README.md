@@ -20,7 +20,7 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 2.  **Acceder au dossier du projet**
 
 ```bash
-  cd gestion-recette-backEnd
+  cd Gestion-recette-backEnd
 ```
 
 3. **Installez les dépendances**
@@ -51,12 +51,38 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 - URL : /recipes
 - Méthode : GET
 - Réponse: Liste de toutes les recettes;
+```bash
+[
+  {
+    "id": 1,
+    "titre": "Recette 1",
+    "ingredients": "Ingrédients de la recette 1",
+    "type": "type 1"
+  },
+  {
+    "id": 2,
+    "titre": "Recette 2",
+    "ingredients": "Ingrédients de la recette 2",
+     "type": "type 2"
+  },
+]
+```
 
 **Récupérer une recette**
 
 - URL : /recipes/:id
 - Méthode : GET
 - Réponse: Détails d'une recette;
+```bash
+[
+  {
+    "id": 1,
+    "titre": "Recette",
+    "ingredients": "Ingrédients de la recette",
+    "type": "type"
+  }
+]
+```
 
 **Créer une nouvelle recette**
 
@@ -103,12 +129,38 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 - URL : /categories
 - Méthode : GET
 - Réponse: Liste de toutes les categories;
+```bash
+[
+  {
+    "id": 1,
+    "titre": "categorie 1",
+    "ingredients": "Ingrédients de la categorie 1",
+    "type": "type 1"
+  },
+  {
+    "id": 2,
+    "titre": "categorie 2",
+    "ingredients": "Ingrédients de la categorie 2",
+     "type": "type 2"
+  },
+]
+```
 
 **Récupérer une catégorie**
 
 - URL : /categories/:id
 - Méthode : GET
 - Réponse: Détails d'une catégorie;
+```bash
+[
+  {
+    "id": 1,
+    "titre": "categorie",
+    "ingredients": "Ingrédients de la categorie",
+    "type": "type"
+  },
+]
+```
 
 **Créer une nouvelle categorie**
 

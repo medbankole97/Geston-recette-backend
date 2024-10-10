@@ -16,7 +16,7 @@ const addRequestValidatorRecipe = [
     .bail()
     .custom(async (value) => {
       const result = await Recipe.checkRecipe(value);
-      if (result !== 0) {
+      if (result.length !== 0) {
         throw new Error('Cette recette existe déjà!');
       }
       return true;
@@ -68,7 +68,7 @@ const addRequestValidatorCategory = [
     .bail()
     .custom(async (value) => {
       const result = await Category.checkCategory(value);
-      if (result !== 0) {
+      if (result.length !== 0) {
         throw new Error('Cette catégorie existe déjà!');
       }
       return true;
@@ -205,9 +205,10 @@ const updateRequestValidatorRecipe = [
     .isLength({ max: 100 })
     .withMessage('Maximum 100 caractères limite!')
     .bail()
-    .custom(async (value) => {
-      const result = await Recipe.checkRecipe(value);
-      if (result !== 0) {
+    .custom(async (value, { req }) => {
+      const id = req.params.id;
+      const result = await Recipe.checkRecipe(value, id);
+      if (result.length !== 0) {
         throw new Error('Cette recette existe déjà!');
       }
       return true;
@@ -268,9 +269,10 @@ const updateRequestValidatorCategory = [
     .isLength({ max: 100 })
     .withMessage('Maximum 100 caractères limite!')
     .bail()
-    .custom(async (value) => {
-      const result = await Category.checkCategory(value);
-      if (result !== 0) {
+    .custom(async (value, { req }) => {
+      const id = req.params.id;
+      const result = await Category.checkCategory(value, id);
+      if (result.length !== 0) {
         throw new Error('Cette catégorie existe déjà!');
       }
       return true;
