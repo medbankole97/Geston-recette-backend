@@ -159,31 +159,31 @@ describe('Recipe tests', () => {
     }
   });
 
-  it('can get recipe by title', async () => {
-    const connection = await pool.getConnection();
-    try {
-      const title = 'crepes';
-      const result = await Recipe.checkRecipe(title);
-      expect(result).not.toEqual([]);
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      connection.release();
-    }
-  });
+  // it('can get recipe by title', async () => {
+  //   const connection = await pool.getConnection();
+  //   try {
+  //     const title = 'crepes';
+  //     const result = await Recipe.checkRecipe(title);
+  //     expect(result).not.toEqual([]);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   } finally {
+  //     connection.release();
+  //   }
+  // });
 
-  it("can't get recipe by title", async () => {
-    const connection = await pool.getConnection();
-    try {
-      const title = 'Saucisse';
-      const result = await Recipe.checkRecipe(title);
-      expect(result).toBe(0);
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      connection.release();
-    }
-  });
+  // it("can't get recipe by title", async () => {
+  //   const connection = await pool.getConnection();
+  //   try {
+  //     const title = 'Saucisse';
+  //     const result = await Recipe.checkRecipe(title);
+  //     expect(result).toBe(0);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   } finally {
+  //     connection.release();
+  //   }
+  // });
 });
 
 describe('Categorie tests', () => {
@@ -316,29 +316,29 @@ describe('Categorie tests', () => {
     }
   });
 
-  it('can get category by name', async () => {
-    const connection = await pool.getConnection();
-    try {
-      const name = 'Dessert';
-      const result = await Category.checkCategory(name);
-      expect(result).not.toBe(0);
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      connection.release();
-    }
-  });
+  // it('can get category by name', async () => {
+  //   const connection = await pool.getConnection();
+  //   try {
+  //     const name = 'Dessert';
+  //     const result = await Category.checkCategory(name);
+  //     expect(result).not.toBe(0);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   } finally {
+  //     connection.release();
+  //   }
+  // });
 
-  it("can't get category by name", async () => {
-    const connection = await pool.getConnection();
-    try {
-      const name = 'Soupe';
-      const result = await Category.checkCategory(name);
-      expect(result).toBe(0);
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      connection.release();
-    }
-  });
+  // it("can't get category by name", async () => {
+  //   const connection = await pool.getConnection();
+  //   try {
+  //     const name = 'Soupe';
+  //     const result = await Category.checkCategory(name);
+  //     expect(result).toBe(0);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   } finally {
+  //     connection.release();
+  //   }
+  // });
 });

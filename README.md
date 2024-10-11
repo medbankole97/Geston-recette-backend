@@ -8,7 +8,6 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 - MySQL (ou un autre système de gestion de base de données compatible)
 - Postman (pour tester l'API)
 
-
 ## Installation
 
 1. **Clonez le dépôt** :
@@ -40,7 +39,7 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
    npm start
 ```
 
-- Importer la collection (postman_collection.json) dans postman pour effectuer des tests;
+- Importer la collection (`Gestion-Recette-Categorie.json`) dans postman pour effectuer des tests;
 
 ## Endpoints API
 
@@ -51,6 +50,7 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 - URL : /recipes
 - Méthode : GET
 - Réponse: Liste de toutes les recettes;
+
 ```bash
 [
   {
@@ -64,7 +64,7 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
     "titre": "Recette 2",
     "ingredients": "Ingrédients de la recette 2",
      "type": "type 2"
-  },
+  }
 ]
 ```
 
@@ -73,6 +73,7 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 - URL : /recipes/:id
 - Méthode : GET
 - Réponse: Détails d'une recette;
+
 ```bash
 [
   {
@@ -129,20 +130,17 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 - URL : /categories
 - Méthode : GET
 - Réponse: Liste de toutes les categories;
+
 ```bash
 [
-  {
-    "id": 1,
-    "titre": "categorie 1",
-    "ingredients": "Ingrédients de la categorie 1",
-    "type": "type 1"
-  },
-  {
-    "id": 2,
-    "titre": "categorie 2",
-    "ingredients": "Ingrédients de la categorie 2",
-     "type": "type 2"
-  },
+    {
+        "id": 1,
+        "nom": "Plat Principal"
+    },
+    {
+        "id": 2,
+        "nom": "Dessert"
+    }
 ]
 ```
 
@@ -151,14 +149,13 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 - URL : /categories/:id
 - Méthode : GET
 - Réponse: Détails d'une catégorie;
+
 ```bash
 [
-  {
-    "id": 1,
-    "titre": "categorie",
-    "ingredients": "Ingrédients de la categorie",
-    "type": "type"
-  },
+ {
+        "id": 1,
+        "nom": "Plat Principal"
+    }
 ]
 ```
 
@@ -168,9 +165,9 @@ Cette API permet de gérer des recettes et des catégories, en allant de leur cr
 - Méthode : POST
 
 ```
-{
-    "nom": "Nouvelle categorie"
-}
+  {
+        "nom": "just cook"
+    }
 ```
 
 - Réponse: `"Added successfully"`;
@@ -217,5 +214,5 @@ npm run format
 ```
 
 ## Auteur
-[Mohamed Bankolé](https://github.com/medbankole97)
 
+[Mohamed Bankolé](https://github.com/medbankole97)

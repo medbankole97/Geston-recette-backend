@@ -1,232 +1,196 @@
 {
-	"info": {
-		"_postman_id": "7dd706ae-c825-49e9-ab0e-8f3467978f74",
-		"name": "Gestion-Recette-Categorie",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "38098528"
-	},
-	"item": [
-		{
-			"name": "GET-RECETTES",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3022/recipes",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3022",
-					"path": [
-						"recipes"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET-CATEGORIES",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3022/categories",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3022",
-					"path": [
-						"categories"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST-RECETTES",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "  {\r\n        \"titre\": \"Macaroni Carbonara\",\r\n        \"ingredients\": \"Spaghetti, eggs, bacon, Parmesan cheese\",\r\n        \"type\": \"Dessert\",\r\n        \"categorie_id\": 2\r\n\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3022/recipes",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3022",
-					"path": [
-						"recipes"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST-CATEGORIES",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "  {\r\n        \"nom\": \"just cook\"\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3022/categories",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3022",
-					"path": [
-						"categories"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PUT-RECETTES",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "    {\r\n        \"titre\": \"Vermicel babana\",\r\n        \"ingredients\": \"Spaghetti, eggs, bacon, Parmesan cheese\",\r\n        \"type\": \"Plat\",\r\n        \"categorie_id\": 2\r\n\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3022/recipes/10",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3022",
-					"path": [
-						"recipes",
-						"10"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PUT-CATEGORIES",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "    {\r\n        \"nom\": \"Dessert salade\"\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3022/categories/3",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3022",
-					"path": [
-						"categories",
-						"3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DELETE-RECETTES",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3022/recipes/14",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3022",
-					"path": [
-						"recipes",
-						"14"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DELETE-CATEGORIES",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3022/categories/7",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3022",
-					"path": [
-						"categories",
-						"7"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "7dd706ae-c825-49e9-ab0e-8f3467978f74",
+    "name": "Gestion-Recette-Categorie",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38098528"
+  },
+  "item": [
+    {
+      "name": "GET-RECETTES",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3022/recipes",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3022",
+          "path": ["recipes"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET-CATEGORIES",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3022/categories",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3022",
+          "path": ["categories"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST-RECETTES",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "  {\r\n        \"titre\": \"Macaroni Carbonara\",\r\n        \"ingredients\": \"Spaghetti, eggs, bacon, Parmesan cheese\",\r\n        \"type\": \"Dessert\",\r\n        \"categorie_id\": 2\r\n\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3022/recipes",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3022",
+          "path": ["recipes"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST-CATEGORIES",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "  {\r\n        \"nom\": \"just cook\"\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3022/categories",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3022",
+          "path": ["categories"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT-RECETTES",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\r\n        \"titre\": \"Vermicel babana\",\r\n        \"ingredients\": \"Spaghetti, eggs, bacon, Parmesan cheese\",\r\n        \"type\": \"Plat\",\r\n        \"categorie_id\": 2\r\n\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3022/recipes/10",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3022",
+          "path": ["recipes", "10"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT-CATEGORIES",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\r\n        \"nom\": \"Dessert salade\"\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3022/categories/3",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3022",
+          "path": ["categories", "3"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE-RECETTES",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3022/recipes/14",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3022",
+          "path": ["recipes", "14"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE-CATEGORIES",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3022/categories/7",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3022",
+          "path": ["categories", "7"]
+        }
+      },
+      "response": []
+    }
+  ]
 }
